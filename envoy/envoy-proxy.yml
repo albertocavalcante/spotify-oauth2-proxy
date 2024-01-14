@@ -1,0 +1,112 @@
+static_resources:
+  secrets:
+    - name: client_secret
+      generic_secret:
+        secret:
+          inline_string: "PLACEHOLDER"
+    - name: hmac
+      generic_secret:
+        secret:
+          inline_string: "PLACEHOLDER"
+  listeners:
+    - address:
+        socket_address:
+          address: 0.0.0.0
+          port_value: 8000
+      filter_chains:
+        - filters:
+            - name: envoy.filters.network.http_connection_manager
+              typed_config:
+                "@type": type.googleapis.com/envoy.extensions.filters.network.http_connection_manager.v3.HttpConnectionManager
+                codec_type: AUTO
+                stat_prefix: ingress_http
+                route_config:
+                  name: local_route
+                  virtual_hosts:
+                    - name: local_service
+                      domains: ["*"]
+                      routes:
+                        - match:
+                            prefix: "/"
+                          route:
+                            cluster: frontend
+                            prefix_rewrite: "/"
+                http_filters:
+                  - name: envoy.filters.http.oauth2
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.oauth2.v3.OAuth2
+                      config:
+                        token_endpoint:
+                          cluster: spotify_oauth
+                          uri: https://accounts.spotify.com/api/token
+                          timeout: 3s
+                        authorization_endpoint: https://accounts.spotify.com/authorize
+                        redirect_uri: http://localhost:8000/callback
+                        redirect_path_matcher:
+                          path:
+                            exact: /callback
+                        signout_path:
+                          path:
+                            exact: /signout
+                        forward_bearer_token: true
+                        credentials:
+                          client_id: "PLACEHOLDER"
+                          token_secret:
+                            name: client_secret
+                          hmac_secret:
+                            name: hmac
+                        auth_scopes:
+                          # https://developer.spotify.com/documentation/web-api/concepts/scopes
+                          - playlist-modify-public
+                          - playlist-modify-private
+                  - name: envoy.filters.http.router
+                    typed_config:
+                      "@type": type.googleapis.com/envoy.extensions.filters.http.router.v3.Router
+  clusters:
+    - name: spotify_oauth
+      connect_timeout: 2.5s
+      type: LOGICAL_DNS
+      dns_lookup_family: V4_ONLY
+      lb_policy: ROUND_ROBIN
+      load_assignment:
+        cluster_name: spotify_oauth
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      address: accounts.spotify.com
+                      port_value: 443
+      transport_socket:
+        name: envoy.transport_sockets.tls
+        typed_config:
+          "@type": type.googleapis.com/envoy.extensions.transport_sockets.tls.v3.UpstreamTlsContext
+          sni: accounts.spotify.com
+
+    - name: frontend
+      connect_timeout: 2.5s
+      type: STRICT_DNS
+      lb_policy: ROUND_ROBIN
+      dns_lookup_family: V4_ONLY
+      load_assignment:
+        cluster_name: frontend
+        endpoints:
+          - lb_endpoints:
+              - endpoint:
+                  address:
+                    socket_address:
+                      # address: host.docker.internal  # or localhost if not using Docker
+                      address: 192.168.72.57 # WSL2 Ubuntu IP Address
+                      port_value: 9000
+overload_manager:
+  refresh_interval: 10s
+  resource_monitors:
+  - name: "envoy.resource_monitors.global_downstream_max_connections"
+    typed_config:
+      "@type": type.googleapis.com/envoy.extensions.resource_monitors.downstream_connections.v3.DownstreamConnectionsConfig
+      max_active_downstream_connections: 1000
+admin:
+  address:
+    socket_address:
+      address: 0.0.0.0
+      port_value: 9901
