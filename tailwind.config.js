@@ -21,6 +21,7 @@ module.exports = {
     extend: {
       fontFamily: {
         arial: ["Arial", ...defaultTheme.fontFamily.sans],
+        circular: ["Circular Std", ...defaultTheme.fontFamily.sans],
         jetbrains: ["JetBrains Mono", ...defaultTheme.fontFamily.sans],
       },
     },
