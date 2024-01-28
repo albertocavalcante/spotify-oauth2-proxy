@@ -1,4 +1,4 @@
-# Terraform Playlists
+# Spotify OAuth2 Proxy
 
 This project is a web application that serves OAuth2 authenticated requests. 
 It's written in Go and uses Envoy Proxy OAuth2 filter for authentication handling.
@@ -7,6 +7,7 @@ It's written in Go and uses Envoy Proxy OAuth2 filter for authentication handlin
 
 - Go
 - Docker
+- TailwindCSS CLI or Node.js
 
 ## Usage
 
