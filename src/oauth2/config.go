@@ -7,7 +7,7 @@ import (
 
 const (
 	defaultPort = "9000"
-	defaultStaticFilesLocation = "../static"
+	defaultStaticFilesLocation = "./static"
 )
 
 var (
