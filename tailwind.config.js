@@ -20,6 +20,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
+        arial: ["Arial", ...defaultTheme.fontFamily.sans],
         jetbrains: ["JetBrains Mono", ...defaultTheme.fontFamily.sans],
       },
     },
