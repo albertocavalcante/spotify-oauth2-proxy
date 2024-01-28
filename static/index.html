@@ -4,46 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="device-width, initial-scale=1.0" />
     <title>Terraform Playlists</title>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Circular+Std:wght@400;700&display=swap"
-    />    
     <link rel="stylesheet" href="/static/styles/output.css" />
   </head>
-  <body>
-    <header>
-      <img src="/static/assets/terraform.svg" alt="Terraform Logo" />
-      <h1 class="font-bold text-orange-600">Terraform Playlists</h1>
+  <body class="[font-family:Arial,_sans-serif] flex flex-col h-screen m-0 p-0 bg-black text-white">
+    <header class="flex items-center justify-center text-center bg-[#1d0627] p-[3.125rem_0]">
+      <img class="h-20 mr-4 align-middle" src="/static/assets/images/terraform.svg" alt="Terraform Logo" />
+      <h1 class="[font-family:Circular_Std,_sans-serif] m-0 font-semibold text-[2vw] text-white">Terraform Playlists</h1>
     </header>
 
-    <div class="container">
-      <table class="table-auto border-collapse mx-auto rounded-lg overflow-hidden">
+    <div class="flex flex-grow justify-center items-center bg-[length:400%_400%]  bg-gradient-to-r from-purple-900 via-purple-600 to-black">
+      <table class="w-[60%] mx-auto table-fixed text-center rounded-lg border-collapse border-none overflow-hidden">
         <thead class="bg-black text-white">
         <tr>
-          <th class="px-4 py-2">Token Type</th>
-          <th class="px-4 py-2">Value</th>
+          <th class="bg-spotify break-words w-[20%] px-4 py-2 border-l-0">Token Type</th>
+          <th class="bg-spotify break-words max-w-[900px] px-4 py-2 border-r-0">Value</th>
         </tr>
         <tr>
-          <td class="border px-4 py-2">Refresh Token</td>
-          <td class="border px-4 py-2">{{ .RefreshToken }}</td>
+          <td class="border border-[#525252] px-4 py-2 border-l-0">Refresh Token</td>
+          <td class="border border-[#525252] px-4 py-2 border-r-0 break-all">{{ .RefreshToken }}</td>
         </tr>
         <tr>
-          <td class="border px-4 py-2">Bearer Token</td>
-          <td class="border px-4 py-2">{{ .BearerToken }}</td>
+          <td class="border border-[#525252] px-4 py-2 border-l-0">Bearer Token</td>
+          <td class="border border-[#525252] px-4 py-2 border-r-0 break-all">{{ .BearerToken }}</td>
         </tr>
         <tr>
-          <td class="border px-4 py-2">Expires</td>
-          <td class="border px-4 py-2">{{ .OauthExpires }}</td>
+          <td class="border border-[#525252] px-4 py-2 border-l-0">Expires</td>
+          <td class="border border-[#525252] px-4 py-2 border-r-0 break-all">{{ .OauthExpires }}</td>
         </tr>
         <tr>
-          <td class="border px-4 py-2">HMAC</td>
-          <td class="border px-4 py-2">{{ .OauthHMAC }}</td>
+          <td class="border border-[#525252] px-4 py-2 border-l-0">HMAC</td>
+          <td class="border border-[#525252] px-4 py-2 border-r-0break-all">{{ .OauthHMAC }}</td>
         </tr>
       </table>
     </div>
 
-    <footer>
-      <p>&copy; 2023</p>
+    <footer class="bg-[#1d0627] p-[1vh_0] text-center">
+      <p>&copy; 2024</p>
     </footer>
   </body>
 </html>
