@@ -7,5 +7,5 @@ envoy-up:
 .PHONY: envoy-up
 
 tailwind-watch:
-	tailwindcss -i static/styles/main.css -o static/styles/output.css --watch
+	tailwindcss -i static/styles/main.css -o static/styles/output.css --watch=always
 .PHONY: tailwind-watch
