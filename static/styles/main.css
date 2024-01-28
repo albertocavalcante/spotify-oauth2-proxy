@@ -2,11 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-
-@layer base {
-    @font-face {
-        font-family: Circular Std;
-        font-weight: 500;
-        src: url(../assets/fonts/circular-std-medium-500.ttf)
-    }
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../assets/fonts/JetBrainsMono-Light.ttf");
 }

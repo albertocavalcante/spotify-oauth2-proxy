@@ -1,25 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 
-const colors = require('tailwindcss/colors')
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
 
 module.exports = {
-  content: [
-    "./static/**/*.html"
-  ],
+  content: ["./static/**/*.html"],
   theme: {
     // https://tailwindcss.com/docs/customizing-colors#using-the-default-colors
     colors: {
-      "spotify": {
+      spotify: {
         DEFAULT: "#1ED760",
       },
-      transparent: 'transparent',
-      current: 'currentColor',
+      transparent: "transparent",
+      current: "currentColor",
       black: colors.black,
       white: colors.white,
       gray: colors.gray,
       green: colors.green,
     },
-    extend: {},
+    extend: {
+      fontFamily: {
+        jetbrains: ["JetBrains Mono", ...defaultTheme.fontFamily.sans],
+      },
+    },
   },
   plugins: [],
-}
+};
