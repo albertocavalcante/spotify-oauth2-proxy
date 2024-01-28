@@ -3,43 +3,44 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="device-width, initial-scale=1.0" />
-    <title>Terraform Playlists</title>
+    <title>Spotify OAuth2 Proxy</title>
+    <link rel="icon" type="image/svg+xml" href="/static/assets/images/spotify.svg"/>
     <link rel="stylesheet" href="/static/styles/output.css" />
   </head>
   <body class="[font-family:Arial,_sans-serif] flex flex-col h-screen m-0 p-0 bg-black text-white">
-    <header class="flex items-center justify-center text-center bg-[#1d0627] p-[3.125rem_0]">
-      <img class="h-20 mr-4 align-middle" src="/static/assets/images/terraform.svg" alt="Terraform Logo" />
-      <h1 class="[font-family:Circular_Std,_sans-serif] m-0 font-semibold text-[2vw] text-white">Terraform Playlists</h1>
+    <header class="flex items-center justify-center text-center bg-black p-[3.125rem_0]">
+      <img class="h-20 mr-4 align-middle" src="/static/assets/images/spotify.svg" alt="Spotify Logo" />
+      <h1 class="[font-family:Circular_Std,_sans-serif] m-0 font-semibold text-[2vw] text-white">Spotify OAuth2 Proxy</h1>
     </header>
 
-    <div class="flex flex-grow justify-center items-center bg-[length:400%_400%]  bg-gradient-to-r from-purple-900 via-purple-600 to-black">
+    <div class="flex flex-grow justify-center items-center bg-[length:400%_400%]  bg-gradient-to-r from-gray-900 via-gray-800 to-black">
       <table class="w-[60%] mx-auto table-fixed text-center rounded-lg border-collapse border-none overflow-hidden">
         <thead class="bg-black text-white">
         <tr>
-          <th class="bg-spotify break-words w-[20%] px-4 py-2 border-l-0">Token Type</th>
-          <th class="bg-spotify break-words max-w-[900px] px-4 py-2 border-r-0">Value</th>
+          <th class="bg-spotify text-black break-words w-[20%] px-4 py-2 border-l-0">Token Type</th>
+          <th class="bg-spotify text-black break-words max-w-[900px] px-4 py-2 border-r-0">Value</th>
         </tr>
         <tr>
-          <td class="border border-gray-600 px-4 py-2 border-l-0">Refresh Token</td>
+          <td class="border border-gray-600 px-4 py-2 border-l-0 font-semibold">Refresh Token</td>
           <td class="border border-gray-600 px-4 py-2 border-r-0 break-all">{{ .RefreshToken }}</td>
         </tr>
         <tr>
-          <td class="border border-gray-600 px-4 py-2 border-l-0">Bearer Token</td>
+          <td class="border border-gray-600 px-4 py-2 border-l-0 font-semibold">Bearer Token</td>
           <td class="border border-gray-600 px-4 py-2 border-r-0 break-all">{{ .BearerToken }}</td>
         </tr>
         <tr>
-          <td class="border border-gray-600 px-4 py-2 border-l-0">Expires</td>
+          <td class="border border-gray-600 px-4 py-2 border-l-0 font-semibold">Expires</td>
           <td class="border border-gray-600 px-4 py-2 border-r-0 break-all">{{ .OauthExpires }}</td>
         </tr>
         <tr>
-          <td class="border border-gray-600 px-4 py-2 border-l-0">HMAC</td>
-          <td class="border border-gray-600 px-4 py-2 border-r-0break-all">{{ .OauthHMAC }}</td>
+          <td class="border border-gray-600 px-4 py-2 border-l-0 font-semibold">HMAC</td>
+          <td class="border border-gray-600 px-4 py-2 border-r-0 break-all">{{ .OauthHMAC }}</td>
         </tr>
       </table>
     </div>
 
-    <footer class="bg-[#1d0627] p-[1vh_0] text-center">
-      <p>&copy; 2024</p>
+    <footer class="bg-black p-[1vh_0] text-center">
+      <p>Alberto Cavalcante &copy; 2024</p>
     </footer>
   </body>
 </html>
